@@ -28,9 +28,10 @@ const Login = () => {
         try {
             const res = await login({ email, password }).unwrap();
             dispatch(setcredentials({ ...res }));
+            router.push("/dashboard");
         } catch (err) {
             toast.error(err?.data?.message || err.error);
-            console.log(err?.data?.message || err.error)
+            console.log(err?.data?.message || err.error);
         }
     };
 
