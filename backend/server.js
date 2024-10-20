@@ -6,12 +6,15 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 const port = process.env.port || 5000;
 import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
 
 connectDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors());
+
 
 app.use("/api/users", userRoutes);
 app.get("/", (req, res) => res.send("Server is ready"));
